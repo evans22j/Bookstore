@@ -26,7 +26,7 @@ The Bookstore is a website to store books that allow users to: Display a list of
 
 #### Cloning the project
 
-git clone https://github.com/sentayhu19/Bookstore <Your-Build-Directory>
+git clone https://github.com/evans22j/Bookstore.git <Your-Build-Directory>
 
 ## Available Scripts
 
