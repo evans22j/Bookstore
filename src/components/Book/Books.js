@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react'
+import { useSelector } from 'react-redux';
 import { generate } from 'randomized-string';
 import { alphanumeric } from 'randomized-string/lib/types';
 import Book from './Book';
@@ -7,7 +7,7 @@ import AddBooks from '../Addbooks/AddBooks';
 import './Books.css';
 
 const Books = () => {
-  const book = useSelector((state) => state.booksReducer); // creating store from the root reducer
+  const book = useSelector((state) => state.booksReducer);
 
   return (
     <>
