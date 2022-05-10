@@ -7,6 +7,7 @@ const Book = ({ title, author }) => (
     <p className="author">{author}</p>
   </>
 );
+
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
