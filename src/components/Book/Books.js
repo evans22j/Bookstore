@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { generate } from 'randomized-string';
 import { alphanumeric } from 'randomized-string/lib/types';
