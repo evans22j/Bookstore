@@ -1,5 +1,6 @@
 const COMPLETED = 'bookstore/categories/COMPLETED';
 
+const initalState = []
 const categoriesReducer = (state = {}, action) => {
   switch (action.type) {
     case COMPLETED:
