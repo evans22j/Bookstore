@@ -7,14 +7,10 @@ const Book = ({ title, author }) => (
     <p className="author">{author}</p>
   </>
 );
+
 Book.propTypes = {
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
 };
-const Book1 = () => (
-  <>
-    <Book title="abebe" author="abebe" />
-    ;
-  </>
-);
-export default Book1;
+
+export default Book;

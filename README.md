@@ -4,8 +4,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 The Bookstore is a website to store books that allow users to: Display a list of books. Add a book. Remove a selected book.
 
-<!-- ![Math-Magicians Home page (20)](https://raw.githubusercontent.com/sentayhu19/Math-Magicians/testing/src/image/Screenshot%202022-04-28%20141844.png) COMMING SOON -->
-
 
 <!-- ## Live demo comming soon-->
 
