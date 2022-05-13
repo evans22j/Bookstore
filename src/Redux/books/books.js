@@ -6,22 +6,22 @@ const booksReducer = (state = initalState, action) => {
     case ADDBOOK:
       return {
         ...state,
-        books: [...state.title, action.type],
+        books: [...state, action.payload],
       };
     case REMOVEBOOK:
-      return {
-        ...state,
-        books: state.title.filter((books) => books.id !== action.type),
-      };
+      return state.filter((book) => book.id === action.id);
+
     default:
       return state;
   }
 };
 
-export const addBook = () => ({
+export const addBook = (payload) => ({
   type: ADDBOOK,
+  payload,
 });
-export const removeBook = () => ({
+export const removeBook = (bookId) => ({
   type: REMOVEBOOK,
+  id: bookId,
 });
 export default booksReducer;
