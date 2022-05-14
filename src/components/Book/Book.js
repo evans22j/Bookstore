@@ -1,16 +1,21 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from './src/Redux/books/books.js';
+import Books from './Books';
 
-const Book = ({ title, author }) => (
-  <>
-    <h2 className="title">{title}</h2>
-    <p className="author">{author}</p>
-  </>
-);
+const Book = () => {
+  const books = useSelector((state) => state.booksReducer);
+  const dispatch = useDispatch();
 
-Book.propTypes = {
-  title: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
+  useEffect(() => {
+    dispatch(fetchData());
+  }, []);
+
+  return (
+    <div>
+      {books.map((book) => <Books key={book.item_id} book={book} />)}
+    </div>
+  );
 };
 
 export default Book;

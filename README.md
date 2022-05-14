@@ -10,7 +10,7 @@ The Bookstore is a website to store books that allow users to: Display a list of
 <!-- [Live Demo Link]( ) comming soon-->
 
 ## Built With
-
+- VSCODE
 - HTML
 - CSS
 - JavaScript
@@ -75,7 +75,6 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
 
 ## Show your support
 
