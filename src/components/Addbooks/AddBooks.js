@@ -1,47 +1,86 @@
 import React, { useState } from 'react';
-import './AddBooks.css';
-import postData from '../../api/api';
-import { v4 as uuidv4 } from 'uuid';
 import { useDispatch } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { addBook } from '../../Redux/books/books';
 
-const url = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/4QxnV6deSqC4eCjJWKBT/books`
 const AddBooks = () => {
   const dispatch = useDispatch();
+
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [category, setCategory] = useState('');
 
-
-  const handleSubmit = (e) => {
+  const bookStore = (e) => {
     e.preventDefault();
-    // const newBook = {
-    //   title,
-    //   author,
-    //   id: uuidv4(),
-    // };
     const newBook = {
       item_id: uuidv4(),
-      title:title,
-      category: author,
-      author:author,
-  }
-    postData(url,newBook)
+      title,
+      author,
+      category,
+    };
     dispatch(addBook(newBook));
+  };
+
+  const authorChangeHandler = (event) => {
+    setAuthor(event.target.value);
+  };
+
+  const titleChangeHandler = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const categoryChangeHandler = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const formSubmitHandler = (e) => {
+    e.preventDefault();
+    e.target.children[1].children[0].value = null;
+    e.target.children[1].children[1].value = null;
     setTitle('');
     setAuthor('');
+    setCategory('');
   };
+
   return (
     <>
       <hr className="hline" />
       <div className="form-wrap">
         <h3>Add A New Book</h3>
-        <form className="add-book-form" onSubmit={handleSubmit}>
-          <input onChange={(e) => setTitle(e.target.value)} value={title} type="text" placeholder="Title" className="title" />
-          <input onChange={(e) => setAuthor(e.target.value)} value={author} type="text" placeholder="author" className="Author" />
-          <input onChange={(e) => setCategory(e.target.value)} value={category} type="text" placeholder="author" className="Author" />
+        <form className="add-book-form" onSubmit={formSubmitHandler}>
+          <input
+            name={title}
+            placeholder="Title"
+            value={title}
+            required
+            onChange={(e) => titleChangeHandler(e)}
+            className="title"
+          />
+          <input
+            type="text"
+            name={author}
+            placeholder="Book Author"
+            value={author}
+            required
+            onChange={(e) => authorChangeHandler(e)}
+            className="Author"
+          />
+          <input
+            name={category}
+            value={category}
+            required
+            onChange={(e) => categoryChangeHandler(e)}
+            className="Author"
+          />
 
-          <button className="Addbook-btn" type="button" onClick={(e) => handleSubmit(e)}>Add Book</button>
+          <button
+            className="Addbook-btn"
+            disabled={!title && !author && !category}
+            type="submit"
+            onClick={bookStore}
+          >
+            Add Book
+          </button>
         </form>
       </div>
     </>

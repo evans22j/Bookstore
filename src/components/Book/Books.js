@@ -1,25 +1,34 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { generate } from 'randomized-string';
-import { alphanumeric } from 'randomized-string/lib/types';
-import Book from './Book';
+import { useSelector, useDispatch } from 'react-redux';
+
+// import PropTypes from 'prop-types';
 import AddBooks from '../Addbooks/AddBooks';
-import './Books.css';
+import { removeBook } from '../../Redux/books/books';
 
 const Books = () => {
-  const book = useSelector((state) => state.booksReducer);
+  const books = useSelector((state) => state.booksReducer);
+  console.log(books);
+  const dispatch = useDispatch();
+
+  const handleClick = (e) => {
+    dispatch(removeBook(e));
+  };
 
   return (
     <>
       <main className="main">
         <section className="books-list-section">
+          <ul>
+            {books.map((book) => (
+              <li id={book.item_id} key={book.item_id}>
+                {book.title}
+                by
+                {book.author}
 
-          <Book
-            key={generate({ charset: alphanumeric, length: 32 })}
-            {...book}
-          />
-
-          <button type="button" className="remove">Remove</button>
+                <button type="button" className="remove" onClick={(e) => handleClick(e.target.id)}>Remove</button>
+              </li>
+            ))}
+          </ul>
         </section>
         <section className="add-book-section">
           <AddBooks />
@@ -28,4 +37,13 @@ const Books = () => {
     </>
   );
 };
+
+// Books.propTypes = {
+//   book: PropTypes.objectOf(PropTypes.object),
+// }
+
+// Books.defaultProps = {
+//   book: {},
+// };
+
 export default Books;
