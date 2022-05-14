@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addBook } from '../../Redux/books/books';
+import { addBook } from '../redux/books/books';
+import './styles/form.css';
 
-const AddBooks = () => {
+const Form = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -43,47 +44,55 @@ const AddBooks = () => {
   };
 
   return (
-    <>
-      <hr className="hline" />
-      <div className="form-wrap">
-        <h3>Add A New Book</h3>
-        <form className="add-book-form" onSubmit={formSubmitHandler}>
+    <section className="form">
+      <form onSubmit={formSubmitHandler}>
+        <h2 className="new-book">ADD NEW BOOK</h2>
+        <div className="form-inputs">
           <input
+            type="text"
+            className="text"
             name={title}
             placeholder="Title"
             value={title}
             required
             onChange={(e) => titleChangeHandler(e)}
-            className="title"
           />
           <input
             type="text"
             name={author}
             placeholder="Book Author"
+            className="author"
             value={author}
             required
             onChange={(e) => authorChangeHandler(e)}
-            className="Author"
           />
-          <input
+          <select
             name={category}
+            className="category-select"
             value={category}
             required
             onChange={(e) => categoryChangeHandler(e)}
-            className="Author"
-          />
-
+          >
+            <option value="" disabled>
+              Category
+            </option>
+            <option value="business">Business</option>
+            <option value="fiction">Fiction</option>
+            <option value="programming">Programming</option>
+            <option value="adventure">Adventure</option>
+            <option value="science">Science</option>
+          </select>
           <button
-            className="Addbook-btn"
             disabled={!title && !author && !category}
             type="submit"
             onClick={bookStore}
           >
-            Add Book
+            ADD BOOK
           </button>
-        </form>
-      </div>
-    </>
+        </div>
+      </form>
+    </section>
   );
 };
-export default AddBooks;
+
+export default Form;
